@@ -9,7 +9,7 @@ import { SignatureV2, SignDoc } from "@terra-money/terra.js";
 import { AppInfoResponse, CommonResponse, DeviceInfoResponse, PublicKeyResponse, VersionResponse } from "./types";
 import semver from "semver";
 
-const LUNA_COIN_TYPE = 330;
+const LUNA_COIN_TYPE = 118;
 const INTERACTION_TIMEOUT = 120;
 const REQUIRED_APP_VERSION = "1.0.0";
 
@@ -91,8 +91,8 @@ export class LedgerKey extends Key {
     const res = await this.app.initialize();
 
     const { app_name: appName } = this.app.getInfo();
-    if (appName !== "Terra") {
-      throw new LedgerError("Open the Terra app in the Ledger");
+    if (appName !== "Cosmos") {
+      throw new LedgerError("Open the Cosmos app in the Ledger");
     }
 
     const { major, minor, patch } = this.app.getVersion();
