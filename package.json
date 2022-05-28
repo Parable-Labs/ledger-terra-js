@@ -1,7 +1,7 @@
 {
-  "name": "@terra-cosmos/ledger-terra-js",
-  "version": "1.2.2",
-  "description": "API for Terra App (Ledger Nano S/X)",
+  "name": "ledger-terra-cosmos",
+  "version": "1.0.0",
+  "description": "Package to enable Ledger support using Cosmos Ledger app for Terrastation",
   "main": "./dist/index.js",
   "repository": {
     "type": "git",
