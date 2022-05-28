@@ -95,11 +95,6 @@ export class LedgerKey extends Key {
       throw new LedgerError("Open the Cosmos app in the Ledger");
     }
 
-    const { major, minor, patch } = this.app.getVersion();
-    const version = `${major}.${minor}.${patch}`;
-    if (appName === "Terra" && semver.lt(version, REQUIRED_APP_VERSION)) {
-      throw new LedgerError("Outdated version: Update Ledger Terra App to the latest version");
-    }
     checkLedgerErrors(res);
     await this.loadAccountDetails();
   }

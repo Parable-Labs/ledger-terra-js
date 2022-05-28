@@ -62,9 +62,10 @@ test("get version", async () => {
 
 test("publicKey", async () => {
   // Derivation path. First 3 items are automatically hardened!
-  const path = [44, 330, 0, 0, 0];
+  const path = [44, 118, 0, 0, 0];
 
   const resp = (await app.getPublicKey(path)) as PublicKeyResponse;
+  console.log(resp);
 
   expect(resp.return_code).toEqual(ERROR_CODE.NoError);
   expect(resp.error_message).toEqual("No errors");
@@ -82,8 +83,8 @@ test("getAddressAndPubKey", async () => {
   jest.setTimeout(60000);
 
   // Derivation path. First 3 items are automatically hardened!
-  const path = [44, 330, 5, 0, 3];
-  const resp = (await app.getAddressAndPubKey(path, "terra")) as AddressResponse;
+  const path = [44, 118, 0, 0, 0];
+  const resp = (await app.getAddressAndPubKey(path, "cosmos")) as AddressResponse;
 
   debug("getAddressAndPubKey", resp);
 
@@ -102,8 +103,8 @@ test("show address and public key", async () => {
   jest.setTimeout(60000);
 
   // Derivation path. First 3 items are automatically hardened!
-  const path = [44, 330, 5, 0, 3];
-  const resp = (await app.showAddressAndPubKey(path, "terra")) as AddressResponse;
+  const path = [44, 118, 0, 0, 0];
+  const resp = (await app.showAddressAndPubKey(path, "cosmos")) as AddressResponse;
 
   debug("showAddressAndPubKey", resp);
 
@@ -131,7 +132,7 @@ test("sign and verify", async () => {
   jest.setTimeout(60000);
 
   // Derivation path. First 3 items are automatically hardened!
-  const path = [44, 330, 0, 0, 0];
+  const path = [44, 118, 0, 0, 0];
   const message = String.raw`{"account_number":"6571","chain_id":"columbus-3","fee":{"amount":[{"amount":"5000","denom":"uluna"}],"gas":"200000"},"memo":"Delegated with Ledger from union.market","msgs":[{"type":"staking/MsgDelegate","value":{"amount":{"amount":"1000000","denom":"uluna"},"delegator_address":"terra102hty0jv2s29lyc4u0tv97z9v298e24thg5trl","validator_address":"terravaloper1grgelyng2v6v3t8z87wu3sxgt9m5s03x2mfyu7"}}],"sequence":"0"}`;
 
   await testSign(path, message);
@@ -140,7 +141,7 @@ test("sign and verify", async () => {
 test("sign tiny memo", async () => {
   jest.setTimeout(60000);
   // Derivation path. First 3 items are automatically hardened!
-  const path = [44, 330, 0, 0, 0];
+  const path = [44, 118, 0, 0, 0];
   const message = String.raw`{"account_number":"0","chain_id":"test-chain-1","fee":{"amount":[{"amount":"5","denom":"photon"}],"gas":"10000"},"memo":"A","msgs":[{"inputs":[{"address":"cosmosaccaddr1d9h8qat5e4ehc5","coins":[{"amount":"10","denom":"luna"}]}],"outputs":[{"address":"cosmosaccaddr1da6hgur4wse3jx32","coins":[{"amount":"10","denom":"luna"}]}]}],"sequence":"1"}`;
 
   await testSign(path, message);
@@ -150,7 +151,7 @@ test("sign empty memo", async () => {
   jest.setTimeout(60000);
 
   // Derivation path. First 3 items are automatically hardened!
-  const path = [44, 330, 0, 0, 0];
+  const path = [44, 118, 0, 0, 0];
   const message = String.raw`{"account_number":"0","chain_id":"test-chain-1","fee":{"amount":[{"amount":"5","denom":"photon"}],"gas":"10000"},"memo":"","msgs":[{"inputs":[{"address":"cosmosaccaddr1d9h8qat5e4ehc5","coins":[{"amount":"10","denom":"luna"}]}],"outputs":[{"address":"cosmosaccaddr1da6hgur4wse3jx32","coins":[{"amount":"10","denom":"luna"}]}]}],"sequence":"1"}`;
 
   await testSign(path, message);
@@ -160,7 +161,7 @@ test("sign withdraw", async () => {
   jest.setTimeout(60000);
 
   // Derivation path. First 3 items are automatically hardened!
-  const path = [44, 330, 0, 0, 0];
+  const path = [44, 118, 0, 0, 0];
   const txObj = {
     account_number: "108",
     chain_id: "columbus-3",
@@ -213,7 +214,7 @@ test("sign withdraw", async () => {
 test("sign big tx", async () => {
   jest.setTimeout(60000);
 
-  const path = [44, 330, 0, 0, 0]; // Derivation path. First 3 items are automatically hardened!
+  const path = [44, 118, 0, 0, 0]; // Derivation path. First 3 items are automatically hardened!
   const message =
     '{"account_number":"108","chain_id":"columbus-3",' +
     '"fee":{"amount":[{"amount":"600","denom":"uluna"}],"gas":"200000"},"memo":"",' +
@@ -272,7 +273,7 @@ test("sign big tx", async () => {
 test("sign invalid", async () => {
   jest.setTimeout(60000);
 
-  const path = [44, 330, 0, 0, 0]; // Derivation path. First 3 items are automatically hardened!
+  const path = [44, 118, 0, 0, 0]; // Derivation path. First 3 items are automatically hardened!
   const invalidMessage =
     '{"chain_id":"local-testnet","fee":{"amount":[],"gas":"500000"},"memo":"","msgs":[{"delegator_addr":"cosmos1qpd4xgtqmxyf9ktjh757nkdfnzpnkamny3cpzv","validator_addr":"cosmosvaloper1zyp0axz2t55lxkmgrvg4vpey2rf4ratcsud07t","value":{"amount":"1","denom":"stake"}}],"sequence":"0"}';
 

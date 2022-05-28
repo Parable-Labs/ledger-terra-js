@@ -125,7 +125,7 @@ export default class TerraApp {
 
   getPublicKey(path): Promise<PublicKeyResponse> {
     const result = serializePath(path);
-    const data = Buffer.concat([TerraApp.serializeHRP("terra"), result]);
+    const data = Buffer.concat([TerraApp.serializeHRP("cosmos"), result]);
     return publicKey(this.transport, data);
   }
 
